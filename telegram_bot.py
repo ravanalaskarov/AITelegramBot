@@ -16,16 +16,14 @@ async def help_command(update: Update, context : ContextTypes.DEFAULT_TYPE):
 
 
 
-def handle_response(text: str) -> str:
+def handle_response(update: Update) -> str:
     
-    response = gpt.askGPT(text)
+    response = gpt.askGPT(update)
 
     return response
 
 async def handle_message(update: Update, context : ContextTypes.DEFAULT_TYPE):
-    text: str = update.message.text
-
-    response: str = handle_response(text)
+    response: str = handle_response(update)
 
     await update.message.reply_text(response)
 
